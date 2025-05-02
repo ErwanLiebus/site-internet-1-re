@@ -2,121 +2,131 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ma période de stage secondaire</title>
   <style>
     :root {
-      --primary: #007bff;
+      --primary: #2a5298;
+      --secondary: #1e3c72;
       --background: #f4f7fa;
-      --text: #333;
-      --highlight: #0056b3;
+      --text: #2e2e2e;
+      --accent: #5d9cec;
     }
 
     * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
     }
 
     body {
       font-family: 'Segoe UI', sans-serif;
-      background-color: var(--background);
+      background: var(--background);
       color: var(--text);
-      line-height: 1.6;
     }
 
     header {
-      background: linear-gradient(to right, var(--primary), var(--highlight));
+      background: linear-gradient(to right, var(--primary), var(--secondary));
       color: white;
-      padding: 30px 20px;
+      padding: 2em 1em;
       text-align: center;
-      box-shadow: 0 5px 10px rgba(0,0,0,0.2);
     }
 
     header h1 {
-      font-size: 2.5em;
-      font-weight: 800;
+      font-size: 6vw;
       font-style: italic;
-    }
-
-    .banner {
-      margin-top: 15px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 15px;
-      flex-wrap: wrap;
+      font-weight: bold;
     }
 
     .banner img {
-      height: 80px;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      width: 80px;
+      margin-top: 1em;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
     }
 
     nav {
       background-color: white;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
       position: sticky;
       top: 0;
-      z-index: 1000;
+      z-index: 10;
     }
 
     nav ul {
       display: flex;
+      flex-wrap: wrap;
       justify-content: center;
       list-style: none;
-      padding: 10px;
+      padding: 1em;
     }
 
     nav ul li {
-      margin: 0 10px;
+      margin: 0.5em;
     }
 
-    nav ul li button {
-      background: var(--primary);
-      color: white;
+    nav button {
+      background-color: var(--primary);
       border: none;
-      padding: 12px 20px;
-      border-radius: 30px;
-      font-size: 16px;
-      transition: all 0.3s ease;
+      color: white;
+      padding: 0.8em 1.5em;
+      border-radius: 25px;
+      font-size: 1em;
+      transition: 0.3s ease;
       cursor: pointer;
     }
 
-    nav ul li button:hover {
-      background: var(--highlight);
+    nav button:hover {
+      background-color: var(--accent);
       transform: scale(1.05);
-      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
     }
 
     main {
-      max-width: 900px;
-      margin: 30px auto;
-      background-color: white;
-      padding: 30px;
+      max-width: 1000px;
+      margin: 2em auto;
+      padding: 2em;
+      background: white;
       border-radius: 15px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-      opacity: 1;
-      transition: opacity 0.5s ease;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+      transition: 0.3s ease;
     }
 
-    main.fade-out {
-      opacity: 0;
+    section {
+      margin-bottom: 2em;
+    }
+
+    section img {
+      max-width: 100%;
+      border-radius: 12px;
+      margin-top: 1em;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
     }
 
     h2 {
       color: var(--primary);
-      margin-bottom: 10px;
+      margin-bottom: 0.5em;
     }
 
     footer {
       background-color: var(--primary);
       color: white;
       text-align: center;
-      padding: 15px;
-      font-size: 14px;
-      margin-top: 40px;
-      border-top: 4px solid var(--highlight);
+      padding: 1em;
+      font-size: 0.9em;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 8vw;
+      }
+
+      nav button {
+        width: 100%;
+      }
     }
   </style>
 </head>
@@ -125,68 +135,65 @@
     <h1><strong><em>Ma période de stage secondaire</em></strong></h1>
     <div class="banner">
       <img src="https://st.depositphotos.com/31887066/51411/i/1600/depositphotos_514116890-stock-photo-assam-india-june-2021-windows.jpg" alt="Logo Windows">
-      <p>Bienvenue sur mon site de stage</p>
     </div>
   </header>
 
   <nav>
     <ul>
-      <li><button onclick="showContent('liebus')">Liebus Erwan</button></li>
-      <li><button onclick="showContent('lm')">LM INFORMATIQUE</button></li>
-      <li><button onclick="showContent('activites')">Activités</button></li>
-      <li><button onclick="showContent('bilan')">Bilan</button></li>
+      <li><button onclick="show('erwan')">Liebus Erwan</button></li>
+      <li><button onclick="show('lm')">LM INFORMATIQUE</button></li>
+      <li><button onclick="show('activites')">Activités</button></li>
+      <li><button onclick="show('bilan')">Bilan</button></li>
+      <li><button onclick="show('all')">Tout afficher</button></li>
     </ul>
   </nav>
 
-  <main id="content">
-    <h2>Liebus Erwan</h2>
-    <p>Je m'appelle <strong>Erwan Liebus</strong>, je suis étudiant au lycée professionnel Claude Chappe d'Arnage et j'ai eu deux périodes de stage dans la même entreprise. La première je n'y reviendrai pas dessus, par contre je parlerai de la deuxième.</p>
+  <main>
+    <section id="erwan">
+      <h2>Liebus Erwan</h2>
+      <p>Je m'appelle <strong>Erwan Liebus</strong>, je suis étudiant au lycée professionnel Claude Chappe d'Arnage. J'ai eu deux périodes de stage dans la même entreprise. La première je n'y reviendrai pas dessus, par contre je parlerai de la deuxième.</p>
+      <img src="https://images.unsplash.com/photo-1581090700227-1e8d43b3f1de" alt="Étudiant au travail">
+    </section>
 
-    <h2>LM INFORMATIQUE</h2>
-    <p>Comme dit précédemment, j'ai fait mes deux périodes de stage dans la même entreprise dénommée LM INFORMATIQUE. C'est une entreprise de réparation multimédia : PC portable/fixe, consoles de jeux modernes/rétro, certaines imprimantes, etc. Ils sont aussi spécialisés dans le montage de bornes d'arcade rétro. Ils ont trois employés (deux apprentis et un employé fixe) et un patron, mais depuis peu une secrétaire s'est rajoutée à l'effectif.</p>
+    <section id="lm">
+      <h2>LM INFORMATIQUE</h2>
+      <p>Comme dit précédemment, j'ai fait mes deux périodes de stage dans la même entreprise dénommée LM INFORMATIQUE. C'est une entreprise de réparation multimédia : PC portable/fixe, consoles de jeux modernes/rétro, certaines imprimantes, etc.</p>
+      <p>Ils sont aussi spécialisés dans le montage de bornes d'arcade rétro. L’équipe est composée de trois employés (deux apprentis et un salarié fixe), un patron et depuis peu, une secrétaire.</p>
+      <img src="https://images.unsplash.com/photo-1611186871348-b1ce696e52c6" alt="Atelier informatique">
+    </section>
 
-    <h2>Activités</h2>
-    <p>Sur ce dernier stage, j'ai fait plusieurs activités, mais je n'en parlerai que de deux.</p>
-    <p>En premier, j'ai fait (et surtout fait presque que ça) de la remise à neuf de l'OS (Windows), plus particulièrement sur des PC portables. Ce processus permet de refaire fonctionner le PC suite à un BlueScreen (écran bleu de la mort), un blocage du BitLocker, etc.</p>
-    <p>En deuxième activité, j'ai fait du câble management. Cela consiste à bien ranger les câbles d'un PC fixe dans le but que rien ne vienne embêter la mise en place des différents éléments du châssis.</p>
+    <section id="activites">
+      <h2>Activités</h2>
+      <p>Sur ce dernier stage, j'ai effectué plusieurs activités, mais je n'en détaillerai que deux :</p>
+      <ul>
+        <li>● <strong>Remise à neuf de l’OS</strong> sur des PC portables (réinstallation de Windows après écrans bleus, BitLocker, etc.).</li>
+        <li>● <strong>Câble management</strong> : rangement des câbles dans les tours pour améliorer le flux d’air et l’organisation.</li>
+      </ul>
+      <img src="https://images.unsplash.com/photo-1615800003925-b02a8d2b8a48" alt="Montage PC">
+    </section>
 
-    <h2>Bilan</h2>
-    <p>Pour conclure, les activités regroupées de mon stage effectué chez LM INFORMATIQUE sont principalement tournées vers la réparation multimédia.</p>
+    <section id="bilan">
+      <h2>Bilan</h2>
+      <p>Pour conclure, les activités regroupées lors de mon stage chez LM INFORMATIQUE sont principalement orientées vers la réparation multimédia. Cette expérience m’a permis de mieux comprendre le fonctionnement d’un atelier technique et m’a donné envie de continuer dans ce domaine.</p>
+      <blockquote style="font-style: italic; margin-top: 1em;">"Le meilleur moyen d’apprendre, c’est de faire." – Aristote (presque).</blockquote>
+    </section>
   </main>
 
   <footer>
-    &copy; 2025 Liebus Erwan — Tous droits réservés
+    &copy; 2025 Erwan Liebus | Site réalisé dans le cadre d’un stage professionnel
   </footer>
 
   <script>
-    const content = {
-      liebus: `
-        <h2>Liebus Erwan</h2>
-        <p>Je m'appelle <strong>Erwan Liebus</strong>, je suis étudiant au lycée professionnel Claude Chappe d'Arnage et j'ai eu deux périodes de stage dans la même entreprise. La première je n'y reviendrai pas dessus, par contre je parlerai de la deuxième.</p>
-      `,
-      lm: `
-        <h2>LM INFORMATIQUE</h2>
-        <p>Comme dit précédemment, j'ai fait mes deux périodes de stage dans la même entreprise dénommée LM INFORMATIQUE. C'est une entreprise de réparation multimédia : PC portable/fixe, consoles de jeux modernes/rétro, certaines imprimantes, etc. Ils sont aussi spécialisés dans le montage de bornes d'arcade rétro. Ils ont trois employés (deux apprentis et un employé fixe) et un patron, mais depuis peu une secrétaire s'est rajoutée à l'effectif.</p>
-      `,
-      activites: `
-        <h2>Activités</h2>
-        <p>Sur ce dernier stage, j'ai fait plusieurs activités, mais je n'en parlerai que de deux.</p>
-        <p>En premier, j'ai fait (et surtout fait presque que ça) de la remise à neuf de l'OS (Windows), plus particulièrement sur des PC portables. Ce processus permet de refaire fonctionner le PC suite à un BlueScreen (écran bleu de la mort), un blocage du BitLocker, etc.</p>
-        <p>En deuxième activité, j'ai fait du câble management. Cela consiste à bien ranger les câbles d'un PC fixe dans le but que rien ne vienne embêter la mise en place des différents éléments du châssis.</p>
-      `,
-      bilan: `
-        <h2>Bilan</h2>
-        <p>Pour conclure, les activités regroupées de mon stage effectué chez LM INFORMATIQUE sont principalement tournées vers la réparation multimédia.</p>
-      `
-    };
-
-    function showContent(key) {
-      const main = document.getElementById("content");
-      main.classList.add("fade-out");
-      setTimeout(() => {
-        main.innerHTML = content[key];
-        main.classList.remove("fade-out");
-      }, 400);
+    function show(sectionId) {
+      const sections = ['erwan', 'lm', 'activites', 'bilan'];
+      sections.forEach(id => {
+        document.getElementById(id).classList.add('hidden');
+      });
+      if (sectionId === 'all') {
+        sections.forEach(id => document.getElementById(id).classList.remove('hidden'));
+      } else {
+        document.getElementById(sectionId).classList.remove('hidden');
+      }
     }
   </script>
 </body>
