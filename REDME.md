@@ -31,3 +31,7 @@ finalisation du code dans sa structure
 ### sixième commit 
 
 finalisation du code CSS dans sa structure 
+
+### septième commit 
+
+incrustation du texte dans les différant items
