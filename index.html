@@ -1,77 +1,122 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
   <title>Ma période de stage secondaire</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
+    :root {
+      --primary: #007bff;
+      --background: #f4f7fa;
+      --text: #333;
+      --highlight: #0056b3;
+    }
+
+    * {
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: var(--background);
+      color: var(--text);
+      line-height: 1.6;
     }
 
     header {
-      background-color: #007BFF;
+      background: linear-gradient(to right, var(--primary), var(--highlight));
       color: white;
-      padding: 20px;
+      padding: 30px 20px;
       text-align: center;
+      box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+    }
+
+    header h1 {
+      font-size: 2.5em;
+      font-weight: 800;
+      font-style: italic;
     }
 
     .banner {
+      margin-top: 15px;
       display: flex;
-      align-items: center;
       justify-content: center;
-      gap: 20px;
-      margin-top: 10px;
+      align-items: center;
+      gap: 15px;
+      flex-wrap: wrap;
     }
 
     .banner img {
       height: 80px;
-      width: auto;
-      border-radius: 8px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
     }
 
     nav {
-      background-color: #333;
+      background-color: white;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
     }
 
     nav ul {
-      margin: 0;
-      padding: 0;
-      list-style-type: none;
-      overflow: hidden;
-      text-align: center;
+      display: flex;
+      justify-content: center;
+      list-style: none;
+      padding: 10px;
     }
 
     nav ul li {
-      display: inline-block;
+      margin: 0 10px;
     }
 
     nav ul li button {
-      background: none;
-      border: none;
+      background: var(--primary);
       color: white;
-      padding: 15px 20px;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 30px;
       font-size: 16px;
+      transition: all 0.3s ease;
       cursor: pointer;
     }
 
     nav ul li button:hover {
-      background-color: #555;
+      background: var(--highlight);
+      transform: scale(1.05);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
     }
 
     main {
-      padding: 20px;
+      max-width: 900px;
+      margin: 30px auto;
+      background-color: white;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      opacity: 1;
+      transition: opacity 0.5s ease;
+    }
+
+    main.fade-out {
+      opacity: 0;
+    }
+
+    h2 {
+      color: var(--primary);
+      margin-bottom: 10px;
     }
 
     footer {
-      background-color: #007BFF;
+      background-color: var(--primary);
       color: white;
       text-align: center;
-      padding: 10px;
-      position: relative;
-      bottom: 0;
-      width: 100%;
+      padding: 15px;
+      font-size: 14px;
+      margin-top: 40px;
+      border-top: 4px solid var(--highlight);
     }
   </style>
 </head>
@@ -79,7 +124,7 @@
   <header>
     <h1><strong><em>Ma période de stage secondaire</em></strong></h1>
     <div class="banner">
-      <img src="https://st.depositphotos.com/31887066/51411/i/1600/depositphotos_514116890-stock-photo-assam-india-june-2021-windows.jpg" alt="Image de bannière">
+      <img src="https://st.depositphotos.com/31887066/51411/i/1600/depositphotos_514116890-stock-photo-assam-india-june-2021-windows.jpg" alt="Logo Windows">
       <p>Bienvenue sur mon site de stage</p>
     </div>
   </header>
@@ -110,11 +155,11 @@
   </main>
 
   <footer>
-    <p>&copy; 2025 Liebus Erwan - Tous droits réservés</p>
+    &copy; 2025 Liebus Erwan — Tous droits réservés
   </footer>
 
   <script>
-    const contents = {
+    const content = {
       liebus: `
         <h2>Liebus Erwan</h2>
         <p>Je m'appelle <strong>Erwan Liebus</strong>, je suis étudiant au lycée professionnel Claude Chappe d'Arnage et j'ai eu deux périodes de stage dans la même entreprise. La première je n'y reviendrai pas dessus, par contre je parlerai de la deuxième.</p>
@@ -135,8 +180,13 @@
       `
     };
 
-    function showContent(section) {
-      document.getElementById('content').innerHTML = contents[section];
+    function showContent(key) {
+      const main = document.getElementById("content");
+      main.classList.add("fade-out");
+      setTimeout(() => {
+        main.innerHTML = content[key];
+        main.classList.remove("fade-out");
+      }, 400);
     }
   </script>
 </body>
