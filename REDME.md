@@ -27,3 +27,7 @@ test example code
 ### cinquième commit 
 
 finalisation du code dans sa structure 
+
+### sixième commit 
+
+finalisation du code CSS dans sa structure 
