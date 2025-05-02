@@ -2,199 +2,221 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ma période de stage secondaire</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>STAGE POWER</title>
   <style>
-    :root {
-      --primary: #2a5298;
-      --secondary: #1e3c72;
-      --background: #f4f7fa;
-      --text: #2e2e2e;
-      --accent: #5d9cec;
-    }
-
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
+      scroll-behavior: smooth;
     }
 
     body {
-      font-family: 'Segoe UI', sans-serif;
-      background: var(--background);
-      color: var(--text);
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      color: #ffffff;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: -1;
     }
 
     header {
-      background: linear-gradient(to right, var(--primary), var(--secondary));
-      color: white;
-      padding: 2em 1em;
       text-align: center;
+      padding: 4em 1em;
     }
 
     header h1 {
-      font-size: 6vw;
-      font-style: italic;
-      font-weight: bold;
+      font-size: 10vw;
+      color: #0ff;
+      text-shadow: 0 0 10px #0ff, 0 0 20px #00f, 0 0 30px #0ff;
+      animation: neonFlicker 2s infinite alternate;
     }
 
-    .banner img {
-      width: 80px;
-      margin-top: 1em;
-      border-radius: 10px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    @keyframes neonFlicker {
+      0% { text-shadow: 0 0 5px #0ff; }
+      100% { text-shadow: 0 0 20px #00f, 0 0 30px #0ff; }
     }
 
     nav {
-      background-color: white;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      background: rgba(0, 0, 0, 0.85);
+      padding: 1em;
       position: sticky;
       top: 0;
-      z-index: 10;
+      z-index: 999;
     }
 
     nav ul {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
+      gap: 1em;
       list-style: none;
-      padding: 1em;
     }
 
-    nav ul li {
-      margin: 0.5em;
-    }
-
-    nav button {
-      background-color: var(--primary);
+    nav li button {
+      padding: 1em 2em;
       border: none;
+      border-radius: 20px;
+      font-size: 1.1em;
+      font-weight: bold;
+      background: linear-gradient(45deg, #0f0, #0ff);
       color: white;
-      padding: 0.8em 1.5em;
-      border-radius: 25px;
-      font-size: 1em;
-      transition: 0.3s ease;
+      box-shadow: 0 0 15px #000;
       cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s;
     }
 
-    nav button:hover {
-      background-color: var(--accent);
-      transform: scale(1.05);
+    nav li button:hover {
+      transform: scale(1.2);
+      box-shadow: 0 0 20px #fff, 0 0 30px #0ff;
     }
 
     main {
-      max-width: 1000px;
-      margin: 2em auto;
       padding: 2em;
-      background: white;
-      border-radius: 15px;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.1);
-      transition: 0.3s ease;
+      text-align: center;
     }
 
     section {
-      margin-bottom: 2em;
+      margin: 3em 0;
+      padding: 2em;
+      border-radius: 20px;
+      background: rgba(0, 0, 0, 0.7);
+      box-shadow: 0 0 10px #00ffcc;
+      animation: slideIn 1s ease-in-out;
     }
 
-    section img {
-      max-width: 100%;
-      border-radius: 12px;
-      margin-top: 1em;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-    }
-
-    h2 {
-      color: var(--primary);
-      margin-bottom: 0.5em;
+    section h2 {
+      font-size: 2em;
+      color: #00ffff;
     }
 
     footer {
-      background-color: var(--primary);
-      color: white;
-      text-align: center;
+      background: black;
+      color: #fff;
       padding: 1em;
-      font-size: 0.9em;
+      text-align: center;
     }
 
-    .hidden {
-      display: none;
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
-    @media (max-width: 600px) {
-      header h1 {
-        font-size: 8vw;
-      }
+    #audio-controls {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 1000;
+    }
 
-      nav button {
-        width: 100%;
-      }
+    #audio-controls button {
+      padding: 0.8em 1.5em;
+      border-radius: 15px;
+      border: none;
+      background: #0ff;
+      color: #000;
+      font-weight: bold;
+      cursor: pointer;
     }
   </style>
 </head>
 <body>
+  <canvas id="matrix"></canvas>
+
   <header>
-    <h1><strong><em>Ma période de stage secondaire</em></strong></h1>
-    <div class="banner">
-      <img src="https://st.depositphotos.com/31887066/51411/i/1600/depositphotos_514116890-stock-photo-assam-india-june-2021-windows.jpg" alt="Logo Windows">
-    </div>
+    <h1>STAGE POWER</h1>
   </header>
 
   <nav>
     <ul>
-      <li><button onclick="show('erwan')">Liebus Erwan</button></li>
-      <li><button onclick="show('lm')">LM INFORMATIQUE</button></li>
-      <li><button onclick="show('activites')">Activités</button></li>
-      <li><button onclick="show('bilan')">Bilan</button></li>
-      <li><button onclick="show('all')">Tout afficher</button></li>
+      <li><button onclick="scrollToSection('un')">PARTIE 1</button></li>
+      <li><button onclick="scrollToSection('deux')">PARTIE 2</button></li>
+      <li><button onclick="scrollToSection('trois')">PARTIE 3</button></li>
+      <li><button onclick="scrollToSection('quatre')">FINALE</button></li>
     </ul>
   </nav>
 
   <main>
-    <section id="erwan">
-      <h2>Liebus Erwan</h2>
-      <p>Je m'appelle <strong>Erwan Liebus</strong>, je suis étudiant au lycée professionnel Claude Chappe d'Arnage. J'ai eu deux périodes de stage dans la même entreprise. La première je n'y reviendrai pas dessus, par contre je parlerai de la deuxième.</p>
-      <img src="https://images.unsplash.com/photo-1581090700227-1e8d43b3f1de" alt="Étudiant au travail">
+    <section id="un">
+      <h2>Bienvenue à toi !</h2>
+      <p>Ce site n'est pas juste une page... C'est une <strong>explosion de pixels et d'énergie visuelle</strong> ! Attache ta ceinture, on part dans l'univers déjanté d’un stage informatique !</p>
     </section>
 
-    <section id="lm">
-      <h2>LM INFORMATIQUE</h2>
-      <p>Comme dit précédemment, j'ai fait mes deux périodes de stage dans la même entreprise dénommée LM INFORMATIQUE. C'est une entreprise de réparation multimédia : PC portable/fixe, consoles de jeux modernes/rétro, certaines imprimantes, etc.</p>
-      <p>Ils sont aussi spécialisés dans le montage de bornes d'arcade rétro. L’équipe est composée de trois employés (deux apprentis et un salarié fixe), un patron et depuis peu, une secrétaire.</p>
-      <img src="https://images.unsplash.com/photo-1611186871348-b1ce696e52c6" alt="Atelier informatique">
+    <section id="deux">
+      <h2>La Révélation</h2>
+      <p>Tu croyais que rebrancher un PC c’était simple ? Ici on fait du <strong>reformatage de l’extrême</strong>, du <em>BIOS ninja</em> et du <strong>câble management de compétition</strong> !</p>
     </section>
 
-    <section id="activites">
-      <h2>Activités</h2>
-      <p>Sur ce dernier stage, j'ai effectué plusieurs activités, mais je n'en détaillerai que deux :</p>
-      <ul>
-        <li>● <strong>Remise à neuf de l’OS</strong> sur des PC portables (réinstallation de Windows après écrans bleus, BitLocker, etc.).</li>
-        <li>● <strong>Câble management</strong> : rangement des câbles dans les tours pour améliorer le flux d’air et l’organisation.</li>
-      </ul>
-      <img src="https://images.unsplash.com/photo-1615800003925-b02a8d2b8a48" alt="Montage PC">
+    <section id="trois">
+      <h2>Les Héros de l’ombre</h2>
+      <p>Dans l’atelier LM INFORMATIQUE, chaque clic est une bataille, chaque redémarrage une victoire. Trois employés, un patron et... une secrétaire légendaire !</p>
     </section>
 
-    <section id="bilan">
-      <h2>Bilan</h2>
-      <p>Pour conclure, les activités regroupées lors de mon stage chez LM INFORMATIQUE sont principalement orientées vers la réparation multimédia. Cette expérience m’a permis de mieux comprendre le fonctionnement d’un atelier technique et m’a donné envie de continuer dans ce domaine.</p>
-      <blockquote style="font-style: italic; margin-top: 1em;">"Le meilleur moyen d’apprendre, c’est de faire." – Aristote (presque).</blockquote>
+    <section id="quatre">
+      <h2>Épilogue Galactique</h2>
+      <p>Le stage s’achève, mais l’aventure continue. Je repars <strong>boosté</strong>, <strong>motivé</strong> et surtout... <strong>formaté comme un SSD flambant neuf !</strong></p>
     </section>
   </main>
 
   <footer>
-    &copy; 2025 Erwan Liebus | Site réalisé dans le cadre d’un stage professionnel
+    Site exagéré by ChatGPT & YOU - 2025
   </footer>
 
+  <div id="audio-controls">
+    <button onclick="document.getElementById('bgmusic').play()">▶️ Musique</button>
+    <audio id="bgmusic" loop>
+      <source src="https://files.freemusicarchive.org/storage-freemusicarchive-org/music/no_curator/Savfk/Ambient_Stories/Savfk_-_03_-_Starlight.mp3" type="audio/mpeg">
+    </audio>
+  </div>
+
   <script>
-    function show(sectionId) {
-      const sections = ['erwan', 'lm', 'activites', 'bilan'];
-      sections.forEach(id => {
-        document.getElementById(id).classList.add('hidden');
-      });
-      if (sectionId === 'all') {
-        sections.forEach(id => document.getElementById(id).classList.remove('hidden'));
-      } else {
-        document.getElementById(sectionId).classList.remove('hidden');
+    function scrollToSection(id) {
+      document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // Effet Matrix
+    const canvas = document.getElementById('matrix');
+    const ctx = canvas.getContext('2d');
+
+    canvas.height = window.innerHeight;
+    canvas.width = window.innerWidth;
+
+    const katakana = 'アカサタナハマヤラワ0123456789';
+    const columns = canvas.width / 20;
+    const drops = [];
+
+    for (let x = 0; x < columns; x++) drops[x] = 1;
+
+    function draw() {
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      ctx.fillStyle = '#0f0';
+      ctx.font = '18px monospace';
+
+      for (let i = 0; i < drops.length; i++) {
+        const text = katakana[Math.floor(Math.random() * katakana.length)];
+        ctx.fillText(text, i * 20, drops[i] * 20);
+
+        if (drops[i] * 20 > canvas.height && Math.random() > 0.975) {
+          drops[i] = 0;
+        }
+        drops[i]++;
       }
     }
+
+    setInterval(draw, 50);
+
+    window.addEventListener('resize', () => {
+      canvas.height = window.innerHeight;
+      canvas.width = window.innerWidth;
+    });
   </script>
 </body>
 </html>
