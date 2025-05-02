@@ -1,222 +1,366 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>STAGE POWER</title>
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      scroll-behavior: smooth;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Site Web Créatif</title>
+    <style>
+        /* Définir des polices et des couleurs globales */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f0f0f0;
+        }
 
-    body {
-      font-family: 'Comic Sans MS', cursive, sans-serif;
-      color: #ffffff;
-      overflow-x: hidden;
-      position: relative;
-    }
+        h1, h2, h3 {
+            color: #333;
+        }
 
-    canvas {
-      position: fixed;
-      top: 0;
-      left: 0;
-      z-index: -1;
-    }
+        /* Structure de la navigation */
+        nav {
+            background: #333;
+            padding: 15px;
+            text-align: center;
+        }
 
-    header {
-      text-align: center;
-      padding: 4em 1em;
-    }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 18px;
+        }
 
-    header h1 {
-      font-size: 10vw;
-      color: #0ff;
-      text-shadow: 0 0 10px #0ff, 0 0 20px #00f, 0 0 30px #0ff;
-      animation: neonFlicker 2s infinite alternate;
-    }
+        nav a:hover {
+            color: #ff6347;
+        }
 
-    @keyframes neonFlicker {
-      0% { text-shadow: 0 0 5px #0ff; }
-      100% { text-shadow: 0 0 20px #00f, 0 0 30px #0ff; }
-    }
+        /* Mise en page de la section principale */
+        .main-content {
+            display: flex;
+            justify-content: space-between;
+            padding: 50px;
+        }
 
-    nav {
-      background: rgba(0, 0, 0, 0.85);
-      padding: 1em;
-      position: sticky;
-      top: 0;
-      z-index: 999;
-    }
+        .left-column, .right-column {
+            width: 48%;
+            padding: 20px;
+            background: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
 
-    nav ul {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 1em;
-      list-style: none;
-    }
+        .left-column h2, .right-column h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
 
-    nav li button {
-      padding: 1em 2em;
-      border: none;
-      border-radius: 20px;
-      font-size: 1.1em;
-      font-weight: bold;
-      background: linear-gradient(45deg, #0f0, #0ff);
-      color: white;
-      box-shadow: 0 0 15px #000;
-      cursor: pointer;
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
+        .card {
+            background: #f9f9f9;
+            margin-bottom: 20px;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
 
-    nav li button:hover {
-      transform: scale(1.2);
-      box-shadow: 0 0 20px #fff, 0 0 30px #0ff;
-    }
+        .card:hover {
+            transform: scale(1.05);
+        }
 
-    main {
-      padding: 2em;
-      text-align: center;
-    }
+        .card img {
+            width: 100%;
+            border-radius: 8px;
+        }
 
-    section {
-      margin: 3em 0;
-      padding: 2em;
-      border-radius: 20px;
-      background: rgba(0, 0, 0, 0.7);
-      box-shadow: 0 0 10px #00ffcc;
-      animation: slideIn 1s ease-in-out;
-    }
+        .card h3 {
+            margin: 15px 0;
+        }
 
-    section h2 {
-      font-size: 2em;
-      color: #00ffff;
-    }
+        /* Effet de transition sur les boutons */
+        .btn {
+            background: #ff6347;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 18px;
+            transition: background-color 0.3s ease;
+        }
 
-    footer {
-      background: black;
-      color: #fff;
-      padding: 1em;
-      text-align: center;
-    }
+        .btn:hover {
+            background: #ff4500;
+        }
 
-    @keyframes slideIn {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+        /* Animation du texte */
+        .animated-text {
+            animation: fadeIn 2s ease-out;
+        }
 
-    #audio-controls {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      z-index: 1000;
-    }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
 
-    #audio-controls button {
-      padding: 0.8em 1.5em;
-      border-radius: 15px;
-      border: none;
-      background: #0ff;
-      color: #000;
-      font-weight: bold;
-      cursor: pointer;
-    }
-  </style>
+        /* Footer */
+        footer {
+            background: #333;
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        footer a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        footer a:hover {
+            color: #ff6347;
+        }
+
+        /* Galerie d'images */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .gallery img {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Style du formulaire */
+        .form-container {
+            background: #fff;
+            padding: 30px;
+            margin-top: 50px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        .form-container input, .form-container textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .form-container button {
+            background: #ff6347;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .form-container button:hover {
+            background: #ff4500;
+        }
+
+        /* Section testimonials */
+        .testimonials {
+            display: flex;
+            justify-content: space-between;
+            margin: 50px 0;
+        }
+
+        .testimonial-card {
+            background: #fff;
+            padding: 30px;
+            width: 30%;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        .testimonial-card h4 {
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+
+        .testimonial-card p {
+            font-size: 16px;
+        }
+
+        /* Animation de la section "features" */
+        .features {
+            display: flex;
+            justify-content: space-around;
+            margin: 50px 0;
+            flex-wrap: wrap;
+        }
+
+        .feature {
+            background: #ff6347;
+            color: white;
+            padding: 20px;
+            width: 30%;
+            text-align: center;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .feature:hover {
+            transform: scale(1.05);
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .main-content {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .left-column, .right-column {
+                width: 90%;
+                margin-bottom: 30px;
+            }
+
+            .testimonials {
+                flex-direction: column;
+            }
+
+            .testimonial-card {
+                width: 90%;
+                margin-bottom: 20px;
+            }
+
+            .feature {
+                width: 90%;
+                margin-bottom: 20px;
+            }
+        }
+
+        /* Tooltip */
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            cursor: pointer;
+        }
+
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 120px;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px 0;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -60px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+
+    </style>
 </head>
 <body>
-  <canvas id="matrix"></canvas>
 
-  <header>
-    <h1>STAGE POWER</h1>
-  </header>
+    <nav>
+        <a href="#home">Accueil</a>
+        <a href="#about">À propos</a>
+        <a href="#services">Services</a>
+        <a href="#contact">Contact</a>
+    </nav>
 
-  <nav>
-    <ul>
-      <li><button onclick="scrollToSection('un')">PARTIE 1</button></li>
-      <li><button onclick="scrollToSection('deux')">PARTIE 2</button></li>
-      <li><button onclick="scrollToSection('trois')">PARTIE 3</button></li>
-      <li><button onclick="scrollToSection('quatre')">FINALE</button></li>
-    </ul>
-  </nav>
+    <header id="home" class="animated-text">
+        <h1>Bienvenue sur notre site web créatif</h1>
+        <p>Un site moderne avec une interface unique</p>
+    </header>
 
-  <main>
-    <section id="un">
-      <h2>Bienvenue à toi !</h2>
-      <p>Ce site n'est pas juste une page... C'est une <strong>explosion de pixels et d'énergie visuelle</strong> ! Attache ta ceinture, on part dans l'univers déjanté d’un stage informatique !</p>
+    <section class="main-content">
+        <div class="left-column">
+            <h2>Notre Histoire</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ac eros nisi. Sed bibendum ligula sit amet turpis scelerisque, id consequat lorem vestibulum.</p>
+
+            <div class="card">
+                <h3>Nos Valeurs</h3>
+                <img src="https://via.placeholder.com/400" alt="Image" />
+                <p>Excellence, innovation et engagement sont au cœur de notre mission.</p>
+            </div>
+
+            <div class="card">
+                <h3>Notre Équipe</h3>
+                <img src="https://via.placeholder.com/400" alt="Image" />
+                <p>Des professionnels passionnés et déterminés à créer l'impact.</p>
+            </div>
+        </div>
+
+        <div class="right-column">
+            <h2>Nos Services</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer malesuada nisl sit amet risus fringilla, non tincidunt nulla volutpat.</p>
+
+            <div class="features">
+                <div class="feature">
+                    <h3>Service 1</h3>
+                    <p>Expérience client de qualité supérieure.</p>
+                </div>
+                <div class="feature">
+                    <h3>Service 2</h3>
+                    <p>Innovation constante et technologie avancée.</p>
+                </div>
+                <div class="feature">
+                    <h3>Service 3</h3>
+                    <p>Solutions personnalisées adaptées à vos besoins.</p>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <section id="deux">
-      <h2>La Révélation</h2>
-      <p>Tu croyais que rebrancher un PC c’était simple ? Ici on fait du <strong>reformatage de l’extrême</strong>, du <em>BIOS ninja</em> et du <strong>câble management de compétition</strong> !</p>
+    <section class="testimonials">
+        <div class="testimonial-card">
+            <h4>Jean Dupont</h4>
+            <p>"Un service incroyable ! Leur équipe est super réactive et les résultats dépassent nos attentes."</p>
+        </div>
+        <div class="testimonial-card">
+            <h4>Marie Martin</h4>
+            <p>"Je recommande vivement leurs services, leur expertise a fait toute la différence pour notre entreprise."</p>
+        </div>
+        <div class="testimonial-card">
+            <h4>Luc Lefevre</h4>
+            <p>"Des solutions innovantes et de qualité, nous sommes ravis de notre collaboration."</p>
+        </div>
     </section>
 
-    <section id="trois">
-      <h2>Les Héros de l’ombre</h2>
-      <p>Dans l’atelier LM INFORMATIQUE, chaque clic est une bataille, chaque redémarrage une victoire. Trois employés, un patron et... une secrétaire légendaire !</p>
+    <section id="contact">
+        <h2>Contactez-Nous</h2>
+        <div class="form-container">
+            <form action="#">
+                <input type="text" name="name" placeholder="Votre Nom" required>
+                <input type="email" name="email" placeholder="Votre Email" required>
+                <textarea name="message" placeholder="Votre Message" rows="5" required></textarea>
+                <button type="submit">Envoyer</button>
+            </form>
+        </div>
     </section>
 
-    <section id="quatre">
-      <h2>Épilogue Galactique</h2>
-      <p>Le stage s’achève, mais l’aventure continue. Je repars <strong>boosté</strong>, <strong>motivé</strong> et surtout... <strong>formaté comme un SSD flambant neuf !</strong></p>
-    </section>
-  </main>
+    <footer>
+        <p>&copy; 2025, Tous droits réservés. | <a href="#">Mentions légales</a></p>
+        <p>
+            <a href="#">Facebook</a>
+            <a href="#">Instagram</a>
+            <a href="#">Twitter</a>
+        </p>
+    </footer>
 
-  <footer>
-    Site exagéré by ChatGPT & YOU - 2025
-  </footer>
-
-  <div id="audio-controls">
-    <button onclick="document.getElementById('bgmusic').play()">▶️ Musique</button>
-    <audio id="bgmusic" loop>
-      <source src="https://files.freemusicarchive.org/storage-freemusicarchive-org/music/no_curator/Savfk/Ambient_Stories/Savfk_-_03_-_Starlight.mp3" type="audio/mpeg">
-    </audio>
-  </div>
-
-  <script>
-    function scrollToSection(id) {
-      document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
-    }
-
-    // Effet Matrix
-    const canvas = document.getElementById('matrix');
-    const ctx = canvas.getContext('2d');
-
-    canvas.height = window.innerHeight;
-    canvas.width = window.innerWidth;
-
-    const katakana = 'アカサタナハマヤラワ0123456789';
-    const columns = canvas.width / 20;
-    const drops = [];
-
-    for (let x = 0; x < columns; x++) drops[x] = 1;
-
-    function draw() {
-      ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-      ctx.fillStyle = '#0f0';
-      ctx.font = '18px monospace';
-
-      for (let i = 0; i < drops.length; i++) {
-        const text = katakana[Math.floor(Math.random() * katakana.length)];
-        ctx.fillText(text, i * 20, drops[i] * 20);
-
-        if (drops[i] * 20 > canvas.height && Math.random() > 0.975) {
-          drops[i] = 0;
-        }
-        drops[i]++;
-      }
-    }
-
-    setInterval(draw, 50);
-
-    window.addEventListener('resize', () => {
-      canvas.height = window.innerHeight;
-      canvas.width = window.innerWidth;
-    });
-  </script>
 </body>
 </html>
