@@ -74,7 +74,6 @@ nav ul li a {
   border-radius: 30px;
   font-size: 16px;
   transition: all 0.3s ease;
-  display: inline-block;
 }
 
 nav ul li a:hover {
@@ -92,26 +91,37 @@ main {
   box-shadow: 0 8px 20px rgba(0,0,0,0.1);
 }
 
-/* Cacher tout sauf la section ciblée */
-:target ~ main .section {
-  display: none;
-}
-
-#liebus:target ~ main #liebus,
-#lm:target ~ main #lm,
-#activites:target ~ main #activites,
-#bilan:target ~ main #bilan {
-  display: block;
-}
-
 .section {
-  display: block;
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1);
+  transition: opacity 0.5s ease, transform 0.5s ease;
   margin-bottom: 30px;
 }
 
 .section h2 {
   color: var(--primary);
   margin-bottom: 10px;
+}
+
+/* Au clic sur un item, cacher les autres sections */
+:target ~ main .section {
+  opacity: 0;
+  visibility: hidden;
+  height: 0;
+  overflow: hidden;
+  transform: scale(0.95);
+}
+
+/* Sauf la section ciblée */
+#liebus:target ~ main #liebus,
+#lm:target ~ main #lm,
+#activites:target ~ main #activites,
+#bilan:target ~ main #bilan {
+  opacity: 1;
+  visibility: visible;
+  height: auto;
+  transform: scale(1);
 }
 
 footer {

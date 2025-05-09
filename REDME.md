@@ -55,3 +55,7 @@ correction problème affichage différent items
 ### douzième commit 
 
     //        //       //        //        // plus amélioration visuelle
+
+### treizième commit 
+
+ //        //       //        //        //    //     //     ///   plus ajout d'une transition en fondu fluide     
