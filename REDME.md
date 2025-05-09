@@ -47,3 +47,7 @@ reconfiguration de mon code pour le rendre plus lisible
 ### dixième commit 
 
 amélioration visuele et correction de l'affichages des différent items
+
+### onzième commit 
+
+correction problème affichage différent items 

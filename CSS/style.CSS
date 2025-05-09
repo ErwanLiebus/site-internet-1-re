@@ -1,126 +1,129 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  html {
-    scroll-behavior: smooth;
-  }
-  
-  body {
-    font-family: 'Segoe UI', sans-serif;
-    background: linear-gradient(to bottom, #2c3e50, #4ca1af);
-    color: white;
-    line-height: 1.6;
-  }
-  
-  header {
-    text-align: center;
-    padding: 2rem 1rem;
-    background: #000;
-  }
-  
-  .banner {
-    width: 100%;
-    max-height: 200px;
-    object-fit: cover;
-    opacity: 0.4; /* adoucit l’image */
-    filter: brightness(70%) contrast(80%);
-    border-radius: 10px;
-  }
-  
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(to bottom, #2c3e50, #4ca1af);
+  color: white;
+  line-height: 1.6;
+}
+
+header {
+  text-align: center;
+  padding: 2rem 1rem;
+  background: #000;
+}
+
+.banner {
+  width: 100%;
+  max-height: 200px;
+  object-fit: cover;
+  opacity: 0.4;
+  filter: brightness(70%) contrast(80%);
+  border-radius: 10px;
+}
+
+h1 {
+  margin-top: 1rem;
+  font-size: 2.5rem;
+  color: #0ff;
+  text-shadow: 0 0 10px #00ffff;
+}
+
+nav {
+  background: #111;
+  padding: 1rem 0.5rem;
+  text-align: center;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+nav a {
+  background: none;
+  border: 2px solid #0ff;
+  color: #0ff;
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: all 0.3s ease-in-out;
+  font-size: 1rem;
+}
+
+nav a:hover {
+  background: #0ff;
+  color: #000;
+}
+
+main {
+  padding: 2rem 1rem;
+  max-width: 1000px;
+  margin: auto;
+}
+
+.section {
+  background: rgba(0, 0, 0, 0.3);
+  padding: 2rem;
+  margin-bottom: 2rem;
+  border-radius: 15px;
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.4);
+  display: block;
+}
+
+.section h2 {
+  color: #00ffff;
+  margin-bottom: 1rem;
+}
+
+/* Cacher toutes les sections si un fragment est ciblé */
+:target ~ main .section {
+  display: none;
+}
+
+/* Afficher uniquement la section ciblée */
+#erwan:target ~ main #erwan,
+#lm:target ~ main #lm,
+#activites:target ~ main #activites,
+#bilan:target ~ main #bilan {
+  display: block;
+}
+
+footer {
+  background: #000;
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.9rem;
+  color: #ccc;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
   h1 {
-    margin-top: 1rem;
-    font-size: 2.5rem;
-    color: #0ff;
-    text-shadow: 0 0 10px #00ffff;
+    font-size: 2rem;
   }
-  
-  nav {
-    background: #111;
-    padding: 1rem 0.5rem;
-    text-align: center;
-  }
-  
+
   nav ul {
-    list-style: none;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 0.5rem;
+    flex-direction: column;
+    gap: 0.75rem;
   }
-  
+
   nav a {
-    background: none;
-    border: 2px solid #0ff;
-    color: #0ff;
-    padding: 0.5rem 1rem;
-    border-radius: 10px;
-    text-decoration: none;
-    transition: all 0.3s ease-in-out;
-    font-size: 1rem;
+    font-size: 1.1rem;
   }
-  
-  nav a:hover {
-    background: #0ff;
-    color: #000;
-  }
-  
-  main {
-    padding: 2rem 1rem;
-    max-width: 1000px;
-    margin: auto;
-  }
-  
-  /* Par défaut : rien n’est visible */
+
   .section {
-    display: none;
-    background: rgba(0, 0, 0, 0.3);
-    padding: 2rem;
-    margin-bottom: 2rem;
-    border-radius: 15px;
-    box-shadow: 0 0 10px rgba(0, 255, 255, 0.4);
-  }
-  
-  .section h2 {
-    color: #00ffff;
-    margin-bottom: 1rem;
-  }
-  
-  /* Seule la section ciblée est visible */
-  #erwan:target ~ main #erwan,
-  #lm:target ~ main #lm,
-  #activites:target ~ main #activites,
-  #bilan:target ~ main #bilan {
-    display: block;
-  }
-  
-  footer {
-    background: #000;
-    text-align: center;
     padding: 1rem;
-    font-size: 0.9rem;
-    color: #ccc;
   }
-  
-  /* Responsive */
-  @media (max-width: 768px) {
-    h1 {
-      font-size: 2rem;
-    }
-  
-    nav ul {
-      flex-direction: column;
-      gap: 0.75rem;
-    }
-  
-    nav a {
-      font-size: 1.1rem;
-    }
-  
-    .section {
-      padding: 1rem;
-    }
-  }
-  
+}
