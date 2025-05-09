@@ -13,8 +13,6 @@
     background: linear-gradient(to bottom, #2c3e50, #4ca1af);
     color: white;
     line-height: 1.6;
-    padding: 0;
-    margin: 0;
   }
   
   header {
@@ -24,8 +22,11 @@
   }
   
   .banner {
-    max-width: 100%;
-    height: auto;
+    width: 100%;
+    max-height: 200px;
+    object-fit: cover;
+    opacity: 0.4; /* adoucit l’image */
+    filter: brightness(70%) contrast(80%);
     border-radius: 10px;
   }
   
@@ -72,9 +73,9 @@
     margin: auto;
   }
   
-  /* Tout afficher par défaut */
+  /* Par défaut : rien n’est visible */
   .section {
-    display: block;
+    display: none;
     background: rgba(0, 0, 0, 0.3);
     padding: 2rem;
     margin-bottom: 2rem;
@@ -87,15 +88,11 @@
     margin-bottom: 1rem;
   }
   
-  /* Masquer les autres quand un est ciblé */
-  :target ~ main .section {
-    display: none;
-  }
-  
-  #erwan:target,
-  #lm:target,
-  #activites:target,
-  #bilan:target {
+  /* Seule la section ciblée est visible */
+  #erwan:target ~ main #erwan,
+  #lm:target ~ main #lm,
+  #activites:target ~ main #activites,
+  #bilan:target ~ main #bilan {
     display: block;
   }
   
@@ -105,7 +102,6 @@
     padding: 1rem;
     font-size: 0.9rem;
     color: #ccc;
-    margin-top: 2rem;
   }
   
   /* Responsive */

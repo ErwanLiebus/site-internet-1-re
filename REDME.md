@@ -43,3 +43,7 @@ ajustement des différent élément du codes
 ### neuvième commit 
 
 reconfiguration de mon code pour le rendre plus lisible 
+
+### dixième commit 
+
+amélioration visuele et correction de l'affichages des différent items
