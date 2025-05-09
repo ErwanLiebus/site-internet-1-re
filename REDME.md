@@ -51,3 +51,7 @@ amélioration visuele et correction de l'affichages des différent items
 ### onzième commit 
 
 correction problème affichage différent items 
+
+### douzième commit 
+
+    //        //       //        //        // plus amélioration visuelle
