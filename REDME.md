@@ -39,3 +39,7 @@ incrustation du texte dans les différant items
 ### huitième commit 
 
 ajustement des différent élément du codes 
+
+### neuvième commit 
+
+reconfiguration de mon code pour le rendre plus lisible 

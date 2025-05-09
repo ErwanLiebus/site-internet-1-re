@@ -1,21 +1,25 @@
-/* Style général */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+  }
+  
+  html {
     scroll-behavior: smooth;
   }
   
   body {
     font-family: 'Segoe UI', sans-serif;
-    background: linear-gradient(to bottom, #0f2027, #203a43, #2c5364);
+    background: linear-gradient(to bottom, #2c3e50, #4ca1af);
     color: white;
     line-height: 1.6;
+    padding: 0;
+    margin: 0;
   }
   
   header {
     text-align: center;
-    padding: 2em 1em;
+    padding: 2rem 1rem;
     background: #000;
   }
   
@@ -26,18 +30,16 @@
   }
   
   h1 {
-    margin-top: 1em;
-    font-size: 2.5em;
+    margin-top: 1rem;
+    font-size: 2.5rem;
     color: #0ff;
-    text-shadow: 0 0 15px #00ffff;
+    text-shadow: 0 0 10px #00ffff;
   }
   
   nav {
     background: #111;
-    padding: 1em;
-    position: sticky;
-    top: 0;
-    z-index: 100;
+    padding: 1rem 0.5rem;
+    text-align: center;
   }
   
   nav ul {
@@ -45,16 +47,18 @@
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 1em;
+    gap: 0.5rem;
   }
   
   nav a {
-    color: #0ff;
-    text-decoration: none;
-    padding: 0.5em 1em;
+    background: none;
     border: 2px solid #0ff;
+    color: #0ff;
+    padding: 0.5rem 1rem;
     border-radius: 10px;
-    transition: background 0.3s, color 0.3s;
+    text-decoration: none;
+    transition: all 0.3s ease-in-out;
+    font-size: 1rem;
   }
   
   nav a:hover {
@@ -63,29 +67,64 @@
   }
   
   main {
-    padding: 2em;
+    padding: 2rem 1rem;
     max-width: 1000px;
     margin: auto;
   }
   
-  section {
-    margin-bottom: 3em;
-    background: rgba(255, 255, 255, 0.05);
-    padding: 2em;
-    border-radius: 10px;
-    box-shadow: 0 0 10px #00ffff;
+  /* Tout afficher par défaut */
+  .section {
+    display: block;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 2rem;
+    margin-bottom: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.4);
   }
   
-  section h2 {
+  .section h2 {
     color: #00ffff;
-    margin-bottom: 1em;
+    margin-bottom: 1rem;
+  }
+  
+  /* Masquer les autres quand un est ciblé */
+  :target ~ main .section {
+    display: none;
+  }
+  
+  #erwan:target,
+  #lm:target,
+  #activites:target,
+  #bilan:target {
+    display: block;
   }
   
   footer {
     background: #000;
     text-align: center;
-    padding: 1em;
+    padding: 1rem;
+    font-size: 0.9rem;
     color: #ccc;
-    font-size: 0.9em;
+    margin-top: 2rem;
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    h1 {
+      font-size: 2rem;
+    }
+  
+    nav ul {
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+  
+    nav a {
+      font-size: 1.1rem;
+    }
+  
+    .section {
+      padding: 1rem;
+    }
   }
   
