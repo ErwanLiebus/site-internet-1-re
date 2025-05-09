@@ -35,3 +35,7 @@ finalisation du code CSS dans sa structure
 ### septième commit 
 
 incrustation du texte dans les différant items
+
+### huitième commit 
+
+ajustement des différent élément du codes 

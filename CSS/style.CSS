@@ -1,57 +1,91 @@
-body {
-    font-family: Arial, sans-serif;
+/* Style général */
+* {
     margin: 0;
     padding: 0;
-}
-
-header {
-    background-color: #007BFF;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(to bottom, #0f2027, #203a43, #2c5364);
     color: white;
-    padding: 20px;
+    line-height: 1.6;
+  }
+  
+  header {
     text-align: center;
-}
-
-.banner {
-    font-size: 1.2em;
-}
-
-nav {
-    background-color: #333;
-}
-
-nav ul {
-    margin: 0;
-    padding: 0;
-    list-style-type: none;
-    overflow: hidden;
-    text-align: center;
-}
-
-nav ul li {
-    display: inline-block;
-}
-
-nav ul li a {
-    display: block;
-    color: white;
+    padding: 2em 1em;
+    background: #000;
+  }
+  
+  .banner {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+  }
+  
+  h1 {
+    margin-top: 1em;
+    font-size: 2.5em;
+    color: #0ff;
+    text-shadow: 0 0 15px #00ffff;
+  }
+  
+  nav {
+    background: #111;
+    padding: 1em;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  
+  nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1em;
+  }
+  
+  nav a {
+    color: #0ff;
     text-decoration: none;
-    padding: 15px 20px;
-}
-
-nav ul li a:hover {
-    background-color: #555;
-}
-
-main {
-    padding: 20px;
-}
-
-footer {
-    background-color: #007BFF;
-    color: white;
+    padding: 0.5em 1em;
+    border: 2px solid #0ff;
+    border-radius: 10px;
+    transition: background 0.3s, color 0.3s;
+  }
+  
+  nav a:hover {
+    background: #0ff;
+    color: #000;
+  }
+  
+  main {
+    padding: 2em;
+    max-width: 1000px;
+    margin: auto;
+  }
+  
+  section {
+    margin-bottom: 3em;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 2em;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #00ffff;
+  }
+  
+  section h2 {
+    color: #00ffff;
+    margin-bottom: 1em;
+  }
+  
+  footer {
+    background: #000;
     text-align: center;
-    padding: 10px;
-    position: relative;
-    bottom: 0;
-    width: 100%;
-}
+    padding: 1em;
+    color: #ccc;
+    font-size: 0.9em;
+  }
+  
