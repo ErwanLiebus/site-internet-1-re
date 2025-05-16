@@ -44,9 +44,14 @@ header h1 {
 .banner img {
   height: 80px;
   border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-  opacity: 0.5;
-  filter: brightness(80%) contrast(80%);
+  opacity: 0.85;
+  filter: brightness(115%) contrast(110%) saturate(120%);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+  transition: transform 0.3s ease;
+}
+
+.banner img:hover {
+  transform: scale(1.05);
 }
 
 nav {
@@ -91,37 +96,19 @@ main {
   box-shadow: 0 8px 20px rgba(0,0,0,0.1);
 }
 
+/* AFFICHER TOUT PAR DÉFAUT */
 .section {
-  opacity: 1;
-  visibility: visible;
-  transform: scale(1);
-  transition: opacity 0.5s ease, transform 0.5s ease;
+  display: block;
   margin-bottom: 30px;
+  transition: opacity 0.5s ease;
 }
 
-.section h2 {
-  color: var(--primary);
-  margin-bottom: 10px;
-}
-
-/* Au clic sur un item, cacher les autres sections */
-:target ~ main .section {
-  opacity: 0;
-  visibility: hidden;
-  height: 0;
-  overflow: hidden;
-  transform: scale(0.95);
-}
-
-/* Sauf la section ciblée */
-#liebus:target ~ main #liebus,
-#lm:target ~ main #lm,
-#activites:target ~ main #activites,
-#bilan:target ~ main #bilan {
-  opacity: 1;
-  visibility: visible;
-  height: auto;
-  transform: scale(1);
+/* CACHER TOUTES LES AUTRES SECTIONS SI UNE EST CIBLÉE */
+#show-liebus:target ~ main .section:not([data-id="liebus"]),
+#show-lm:target ~ main .section:not([data-id="lm"]),
+#show-activites:target ~ main .section:not([data-id="activites"]),
+#show-bilan:target ~ main .section:not([data-id="bilan"]) {
+  display: none;
 }
 
 footer {
@@ -134,7 +121,6 @@ footer {
   border-top: 4px solid var(--highlight);
 }
 
-/* Responsive */
 @media (max-width: 768px) {
   header h1 {
     font-size: 1.8em;

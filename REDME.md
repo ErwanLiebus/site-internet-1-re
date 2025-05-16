@@ -59,3 +59,7 @@ correction problème affichage différent items
 ### treizième commit 
 
  //        //       //        //        //    //     //     ///   plus ajout d'une transition en fondu fluide     
+
+ ### quatorzième commit 
+
+ finalisation du site
