@@ -1,0 +1,133 @@
+:root {
+  --primary: #007bff;
+  --highlight: #0056b3;
+  --text: #333;
+  --background: #dc143c;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: var(--background);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+header {
+  background: linear-gradient(to right, var(--primary), var(--highlight));
+  color: white;
+  padding: 30px 20px;
+  text-align: center;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+}
+
+header h1 {
+  font-size: 2.5em;
+  font-weight: 800;
+  font-style: italic;
+}
+
+.banner {
+  margin-top: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.banner img {
+  height: 80px;
+  border-radius: 12px;
+  opacity: 0.5;
+  filter: brightness(80%) contrast(80%);
+}
+
+nav {
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+nav ul {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  padding: 10px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+nav ul li a {
+  background: var(--primary);
+  color: white;
+  text-decoration: none;
+  padding: 12px 20px;
+  border-radius: 30px;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+nav ul li a:hover {
+  background: var(--highlight);
+  transform: scale(1.05);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+main {
+  max-width: 900px;
+  margin: 30px auto;
+  background-color: white;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+/* Masquer tout sauf la bonne section si une ancre est ciblée */
+#show-liebus:target ~ main .section:not([data-id="liebus"]),
+#show-lm:target ~ main .section:not([data-id="lm"]),
+#show-activites:target ~ main .section:not([data-id="activites"]),
+#show-bilan:target ~ main .section:not([data-id="bilan"]) {
+  display: none;
+}
+
+footer {
+  background-color: var(--primary);
+  color: white;
+  text-align: center;
+  padding: 15px;
+  font-size: 14px;
+  margin-top: 40px;
+  border-top: 4px solid var(--highlight);
+}
+
+@media (max-width: 768px) {
+  header h1 {
+    font-size: 1.8em;
+  }
+
+  .banner img {
+    height: 60px;
+  }
+
+  nav ul {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  nav ul li a {
+    width: 80%;
+    text-align: center;
+  }
+
+  main {
+    padding: 20px;
+  }
+}
